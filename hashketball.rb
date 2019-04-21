@@ -149,16 +149,16 @@ def team_names
   game_hash.map {|team, attribute| attribute[:team_name]}
 end
 
-def player_numbers(team_name)
-  numbers_array = []
-  game_hash.each do |location, attributes|
-    if team_name == game_hash[location][:team_name]
-      game_hash[location][:players].each do |name, stats|
-        numbers_array.push(stats[:number])
+def player_numbers(name)
+  array = []
+   game_hash.each do |location, team_data|
+    if team_data[:team_name] == name
+      team_data[:players].each { |player_name, value|
+        array << value[:number]
       end
     end
   end
-  return numbers_array
+  array
 end
 
 def player_stats(name)
